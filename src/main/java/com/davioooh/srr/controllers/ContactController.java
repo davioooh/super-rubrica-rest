@@ -14,7 +14,7 @@ public class ContactController {
     @Autowired
     private ContactService contactService;
 
-    @GetMapping("")
+    @GetMapping
     public List<Contact> getAll() {
         return contactService.getList();
     }
@@ -24,14 +24,14 @@ public class ContactController {
         return contactService.getById(id);
     }
 
-    @PostMapping("")
-    public Contact create(Contact contact) {
-        return contactService.save(contact);
+    @PostMapping
+    public Contact create(@RequestBody Contact contact) {
+        return contactService.create(contact);
     }
 
-    @PutMapping("/{id)")
-    public Contact update(@PathVariable("id") long id, Contact contact) {
-        return contactService.save(contact);
+    @PutMapping("/{id}")
+    public Contact update(@PathVariable("id") long id, @RequestBody Contact contact) {
+        return contactService.update(id, contact);
     }
 
     @DeleteMapping("/{id}")

@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static java.lang.String.format;
+
 @Service
 public class ContactService {
 
@@ -31,12 +33,20 @@ public class ContactService {
                 .findFirst().orElse(null);
     }
 
-    public Contact save(Contact contactForm) {
+    public Contact create(Contact contact) {
         // TODO da implementare
-        return null;
+        System.out.println("Creazione contatto: " + contact.toString());
+        return contact;
+    }
+
+    public Contact update(long id, Contact contact) {
+        // TODO da implementare
+        System.out.println("Aggiornamento contatto: " + contact.toString());
+        return contact;
     }
 
     public void delete(long id) {
         // TODO da implementare
+        System.out.println(format("Eliminazione contatto [ID: %s]", id));
     }
 }
