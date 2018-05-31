@@ -1,52 +1,36 @@
 package com.davioooh.srr.services;
 
 import com.davioooh.srr.domain.Contact;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Lists;
+import com.davioooh.srr.repositories.ContactRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-import static java.lang.String.format;
+import java.util.Optional;
 
 @Service
 public class ContactService {
 
-    private List<Contact> db;
-
-    public ContactService() {
-        db = Lists.newArrayList(
-                new Contact(Long.valueOf(1), "Mario", "Rossi", "3332345678", "m.rossi@red.it"),
-                new Contact(Long.valueOf(2), "Francesca", "Gialli", "3332233444", "francesca.g@yllw.com"),
-                new Contact(Long.valueOf(3), "Marco", "Verdi", "3334545456", "marco.verdi@vmail.com")
-
-        );
-    }
+    @Autowired
+    private ContactRepository contactRepository;
 
     public List<Contact> getList() {
-        return ImmutableList.copyOf(db);
+        return contactRepository.findAll();
     }
 
-    public Contact getById(Long id) {
-        return db.stream()
-                .filter(b -> b.getId().equals(id))
-                .findFirst().orElse(null);
+    public Optional<Contact> getById(String id) {
+        return contactRepository.findById(id);
     }
 
     public Contact create(Contact contact) {
-        // TODO da implementare
-        System.out.println("Creazione contatto: " + contact.toString());
-        return contact;
+        return contactRepository.insert(contact);
     }
 
-    public Contact update(long id, Contact contact) {
-        // TODO da implementare
-        System.out.println("Aggiornamento contatto: " + contact.toString());
-        return contact;
+    public Contact update(Contact contact) {
+        return contactRepository.save(contact);
     }
 
-    public void delete(long id) {
-        // TODO da implementare
-        System.out.println(format("Eliminazione contatto [ID: %s]", id));
+    public void delete(String id) {
+        contactRepository.deleteById(id);
     }
 }

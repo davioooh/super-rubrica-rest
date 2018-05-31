@@ -1,17 +1,20 @@
 package com.davioooh.srr.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
+@Document(collection = "contacts")
 public class Contact {
-    private Long id;
-    private String firstName;
-    private String lastName;
-    private String phone;
-    private String email;
+    @Id
+    private String id;
+    private @NonNull String firstName;
+    private @NonNull String lastName;
+    private @NonNull String phone;
+    private @NonNull String email;
 
 }

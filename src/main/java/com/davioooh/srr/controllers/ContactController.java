@@ -20,8 +20,9 @@ public class ContactController {
     }
 
     @GetMapping("/{id}")
-    public Contact getById(@PathVariable("id") long id) {
-        return contactService.getById(id);
+    public Contact getById(@PathVariable("id") String id) {
+        return contactService.getById(id)
+                .orElse(null);
     }
 
     @PostMapping
@@ -30,12 +31,12 @@ public class ContactController {
     }
 
     @PutMapping("/{id}")
-    public Contact update(@PathVariable("id") long id, @RequestBody Contact contact) {
-        return contactService.update(id, contact);
+    public Contact update(@PathVariable("id") String id, @RequestBody Contact contact) {
+        return contactService.update(contact);
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable("id") long id) {
+    public void delete(@PathVariable("id") String id) {
         contactService.delete(id);
     }
 
