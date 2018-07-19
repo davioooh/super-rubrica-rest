@@ -3,11 +3,10 @@ package com.davioooh.srr.services;
 import com.davioooh.srr.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
-@Service
+//@Service
 public class UUIDAuthenticationService implements UserAuthenticationService {
     @Autowired
     private UserService userService;
@@ -23,6 +22,12 @@ public class UUIDAuthenticationService implements UserAuthenticationService {
                     return token;
                 })
                 .orElseThrow(() -> new BadCredentialsException("Invalid username or password."));
+    }
+
+    @Override
+    public User authenticateByToken(String token) {
+        return userService.getByToken(token)
+                .orElseThrow(() -> new BadCredentialsException("Token not found."));
     }
 
     @Override

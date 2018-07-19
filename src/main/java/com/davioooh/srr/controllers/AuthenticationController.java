@@ -18,7 +18,7 @@ public class AuthenticationController {
     private UserAuthenticationService authenticationService;
 
     @PostMapping("/login")
-    Object login(
+    public Object login(
             @RequestParam("username") String username,
             @RequestParam("password") String password) {
         try {
