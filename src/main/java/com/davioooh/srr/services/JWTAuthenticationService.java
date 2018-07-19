@@ -2,6 +2,7 @@ package com.davioooh.srr.services;
 
 import com.davioooh.srr.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.Objects;
 import java.util.Optional;
 
+@Profile("jwt")
 @Service
 public class JWTAuthenticationService implements UserAuthenticationService {
     @Autowired
