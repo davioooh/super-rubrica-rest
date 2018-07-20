@@ -13,7 +13,6 @@ import java.util.Arrays;
 
 @Component
 public class MongoInitStartupRunner implements ApplicationRunner {
-
     @Autowired
     private UserRepository userRepository;
     @Autowired
@@ -21,9 +20,9 @@ public class MongoInitStartupRunner implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        if(!userRepository.findByUsername("davioooh").isPresent()){
+        if(!userRepository.findByUsername("user").isPresent()){
             User user = new User();
-            user.setUsername("davioooh");
+            user.setUsername("user");
             user.setPassword("pwd1234");
 
             userRepository.save(user);

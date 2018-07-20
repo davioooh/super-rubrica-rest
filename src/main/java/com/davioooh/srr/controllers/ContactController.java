@@ -10,7 +10,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/contacts")
 public class ContactController {
-
     @Autowired
     private ContactService contactService;
 

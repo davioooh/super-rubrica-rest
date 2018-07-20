@@ -41,6 +41,5 @@ public class JWTAuthenticationService implements UserAuthenticationService {
 
     @Override
     public void logout(User user) {
-
     }
 }

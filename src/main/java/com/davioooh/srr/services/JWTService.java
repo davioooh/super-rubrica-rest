@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
-public class JWTService implements TokenService {
+public class JWTService {
     private Algorithm algorithm;
     private int defaultExpiration;
 
@@ -25,7 +25,6 @@ public class JWTService implements TokenService {
 
     }
 
-    @Override
     public String create(String username) {
         Instant issuedAt = Instant.now();
         return JWT.create()
@@ -35,7 +34,6 @@ public class JWTService implements TokenService {
                 .sign(algorithm);
     }
 
-    @Override
     public Map<String, Object> verify(String token) throws TokenVerificationException {
         JWTVerifier verifier = JWT.require(algorithm)
                 .build();
