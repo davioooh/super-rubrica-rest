@@ -19,10 +19,9 @@ public class UUIDAuthenticationService implements UserAuthenticationService {
         return userService.getByUsername(username)
                 .filter(u -> u.getPassword().equals(password))
                 .map(u -> {
-                    String token = UUID.randomUUID().toString();
-                    u.setToken(token);
+                    u.setToken(UUID.randomUUID().toString());
                     userService.save(u);
-                    return token;
+                    return u.getToken();
                 })
                 .orElseThrow(() -> new BadCredentialsException("Invalid username or password."));
     }
@@ -34,7 +33,11 @@ public class UUIDAuthenticationService implements UserAuthenticationService {
     }
 
     @Override
-    public void logout(User user) {
-
+    public void logout(String username) {
+        userService.getByUsername(username)
+                .ifPresent(u -> {
+                    u.setToken(null);
+                    userService.save(u);
+                });
     }
 }

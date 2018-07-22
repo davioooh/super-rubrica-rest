@@ -9,5 +9,5 @@ public interface UserAuthenticationService {
 
     User authenticateByToken(String token) throws AuthenticationException;
 
-    void logout(User user);
+    void logout(String username);
 }
