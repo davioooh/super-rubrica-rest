@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  mongo:
+    container_name: super-rubrica-mongo-db
+    image: mongo:4.0-xenial
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: srr-user
+      MONGO_INITDB_ROOT_PASSWORD: srr-pwd
+    ports:
+    - 27017:27017
